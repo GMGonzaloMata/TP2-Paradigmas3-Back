@@ -1,5 +1,5 @@
 class Sculptor {
-  constructor(name, biography, contact, works = []) {
+  constructor(name, biography, contact, works) {
     this.name = name;
     this.biography = biography;
     this.contact = contact;

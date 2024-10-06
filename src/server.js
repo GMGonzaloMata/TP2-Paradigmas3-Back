@@ -61,7 +61,7 @@ app.get('/events/past', (req, res) => {
 });
 
 app.get('/events/all', (req, res) => {
-  const allEvents = eventController.getAllEvents();  // Asegúrate de tener un método en el controlador que obtenga todos los eventos
+  const allEvents = eventController.getAllEvents();
   res.status(200).json(allEvents);
 });
 

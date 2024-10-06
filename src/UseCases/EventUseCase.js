@@ -16,16 +16,15 @@ class EventUseCase{
       }
       
 
-    getFutureEvents() {
+      getFutureEvents() {
         const currentDate = new Date();
-        return this.eventRepository.getAll().filter(event => event.date > currentDate);
-    }
-
-
-    getPastEvents() {
+        return this.eventRepository.getAll().filter(event => new Date(event.date) > currentDate);
+      }
+      
+      getPastEvents() {
         const currentDate = new Date();
-        return this.eventRepository.getAll().filter(event => event.date < currentDate);
-    }
+        return this.eventRepository.getAll().filter(event => new Date(event.date) < currentDate);
+      }
 
     updateEventTheme(theme,newTheme){
         updatedEvent= this.eventRepository.getAll(event=>event.theme==theme);

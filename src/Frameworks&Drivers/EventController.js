@@ -5,11 +5,10 @@ class EventController {
     this.eventUseCase = eventUseCase;
   }
 
-  createEvent(name, date, location, description, theme) {
-    const event = new Event(name, date, location, description, theme); // Usa la clase Event
+  createEvent(theme, date, location, description) {
+    const event = new Event(theme, date, location, description);
     this.eventUseCase.addEvent(event);
   }
-
   getFutureEvents() {
     return this.eventUseCase.getFutureEvents();
   }
