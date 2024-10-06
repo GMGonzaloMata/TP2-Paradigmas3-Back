@@ -71,7 +71,7 @@ app.post('/sculptors', (req, res) => {
   res.status(201).send('Escultor creado');
 });
 
-app.delete('/sculptors/delete', (req, res) => {
+app.delete('/sculptors', (req, res) => {
   const { name} = req.body;  // Asegúrate de que está leyendo el tema del body
   console.log('Nombre recibido para eliminar:', name);
 
