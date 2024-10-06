@@ -1,0 +1,20 @@
+{
+  "name": "tp2-paradigmas-back",
+  "version": "1.0.0",
+  "description": "Ejemplo de arquitectura clean",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "arquitectura",
+    "clean",
+    "jest"
+  ],
+  "author": "Gonzalo Mata",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}
