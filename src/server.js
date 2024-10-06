@@ -29,8 +29,8 @@ const sculptorController = new SculptorController(sculptorUseCase);
 
 // Rutas HTTP para eventos
 app.post('/events', (req, res) => {
-  const { name, date, location, description, theme } = req.body;
-  eventController.createEvent(name, date, location, description, theme);
+  const { theme, date, location, description } = req.body;//Arreglo   
+  eventController.createEvent(theme, date, location, description);
   res.status(201).send('Evento creado');
 });
 

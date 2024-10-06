@@ -24,7 +24,7 @@ class SculptorController {
         this.sculptorUseCase.updateBiography(name, typeP);
         break;
       case contact:
-        this.sculptorUseCase.updateBiography(name, typeP);
+        this.sculptorUseCase.updateContact(name, typeP);
         break;
       case works:
         this.sculptorUseCase.updateWorks(name, typeP);
