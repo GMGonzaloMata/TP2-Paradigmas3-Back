@@ -12,7 +12,7 @@ class InMemoryEventRepository {
     }
   
     update(theme, updatedEvent) {
-      const index = this.events.findIndex(event => event.theme=== theme);
+      const index = this.events.findIndex(event => event.theme === theme);
       if (index !== -1) {
         this.events[index] = updatedEvent;
       }

@@ -29,9 +29,17 @@ const sculptorController = new SculptorController(sculptorUseCase);
 
 // Rutas HTTP para eventos
 app.post('/events', (req, res) => {
-  const { theme, date, location, description } = req.body;//Arreglo   
+  const { theme, date, location, description } = req.body;
+
+  // Verificar si ya existe un evento con el mismo tema
+  const existingEvent = eventController.getEventByTheme(theme); // Implementar este método en el controlador
+  if (existingEvent) {
+    return res.status(400).send('Ya existe un evento con esta temática');
+  }
+
+  // Si no existe, crear el evento
   eventController.createEvent(theme, date, location, description);
-  res.status(201).send('Evento creado');
+  res.status(201).send('Evento creado con éxito');
 });
 
 app.delete('/events', (req, res) => {
@@ -48,6 +56,20 @@ app.delete('/events', (req, res) => {
   } else {
     res.status(404).send('Evento no encontrado');
   }
+});
+
+app.put('/events', (req, res) => {
+  const { theme, type, typeP } = req.body; // Desestructurar la temática y los nuevos valores
+
+  // Verificar que el tema del evento y el tipo de actualización estén presentes
+  if (!theme || !type) {
+    return res.status(400).send('Debe proporcionar el tema y el tipo de actualización del evento');
+  }
+
+  // Llamar a la función updateEvent del controlador, pasando el tema, el tipo de cambio y el nuevo valor
+  eventController.updateEvent(type, typeP, theme);
+
+  res.status(200).send('Evento actualizado con éxito');
 });
 
 app.get('/events/future', (req, res) => {
@@ -67,8 +89,44 @@ app.get('/events/all', (req, res) => {
 
 // Rutas HTTP para escultores
 app.post('/sculptors', (req, res) => {
+  const { name } = req.body;
+  // Verificar si ya existe un escultor con el mismo nombre
+  const existingSculptor = sculptorController.getSculptorByName(name);
+  if (existingSculptor) {
+    return res.status(400).send('Ya existe un escultor con este nombre');
+  }
+  // Si no existe, crear el escultor
   sculptorController.createSculptor(req);
-  res.status(201).send('Escultor creado');
+  res.status(201).send('Escultor creado con éxito');
+});
+
+app.put('/sculptors', (req, res) => {
+  const { name, type, newValue } = req.body; // Desestructurar el nombre y los nuevos valores
+
+  // Verificar que el nombre del escultor y el tipo de actualización estén presentes
+  if (!name || !type) {
+    return res.status(400).send('Debe proporcionar el nombre del escultor y el tipo de actualización');
+  }
+
+    sculptorController.updateSculptor(name, type, newValue); // Pasar los parámetros directamente al controlador
+    
+    res.status(200).send('Escultor actualizado con éxito');
+});
+
+app.delete('/sculptors', (req, res) => {
+  const { name } = req.body;  // Asegúrate de que está leyendo el tema del body
+  console.log('Tema recibido para eliminar:', name);
+  
+  if (!name) {
+    return res.status(400).send('Debe proporcionar el tema del evento');
+  }
+  
+  const deleted = sculptorController.deleteSculptor(name);
+  if (deleted) {
+    res.status(200).send('Evento eliminado con éxito');
+  } else {
+    res.status(404).send('Evento no encontrado');
+  }
 });
 
 app.get('/sculptors', (req, res) => {

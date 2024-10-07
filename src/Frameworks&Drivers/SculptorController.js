@@ -10,30 +10,37 @@ class SculptorController {
     const sculptor = new Sculptor(name, biography, contact, works); // Usa la clase Sculptor
     this.sculptorUseCase.addSculptor(sculptor);
   }
+  
+  getSculptorByName(name) {
+    const sculptor = this.sculptorUseCase.getSculptor(name);
+    return sculptor || null; // Asegurarse de devolver null si no existe el escultor
+  }
 
   getAllSculptors() {
     return this.sculptorUseCase.getAllSculptors();
   }
 
-  updateSculptor(type, typeP, name) {
+  updateSculptor(name, type, newValue) {
     switch (type) {
-      case name:
-        this.sculptorUseCase.updateName(name, typeP);
+      case 'name':
+        this.sculptorUseCase.updateSculptorName(name, newValue);
         break;
-      case biography:
-        this.sculptorUseCase.updateBiography(name, typeP);
+      case 'biography':
+        this.sculptorUseCase.updateSculptorBiography(name, newValue);
         break;
-      case contact:
-        this.sculptorUseCase.updateContact(name, typeP);
+      case 'contact':
+        this.sculptorUseCase.updateSculptorContact(name, newValue);
         break;
-      case works:
-        this.sculptorUseCase.updateWorks(name, typeP);
+      case 'works':
+        this.sculptorUseCase.updateSculptorWorks(name, newValue);
         break;
+      default:
+        throw new Error('Atributo no válido para modificar');
     }
   }
 
   deleteSculptor(name) {
-    this.sculptorUseCase.deleteSculptor(name);
+    return this.sculptorUseCase.deleteSculptor(name);
   }
 }
 

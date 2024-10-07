@@ -8,7 +8,7 @@ class EventUseCase{
     }
     
     getEvent(theme) {
-        return this.eventRepository.getAll().filter(event => event.theme == theme);
+      return this.eventRepository.getAll().find(event => event.theme === theme) || null;
     }
 
     getAllEvents() {
@@ -26,28 +26,44 @@ class EventUseCase{
         return this.eventRepository.getAll().filter(event => new Date(event.date) < currentDate);
       }
 
-    updateEventTheme(theme,newTheme){
-        updatedEvent= this.eventRepository.getAll(event=>event.theme==theme);
-        updatedEvent.setTheme(newTheme);
-        this.eventRepository.update(theme, updatedEvent);
-    }
+      updateEventTheme(theme, newTheme) {
+        const updatedEvent = this.eventRepository.getAll().find(event => event.theme == theme);
+        if (updatedEvent) {
+          updatedEvent.setTheme(newTheme);
+          this.eventRepository.update(theme, updatedEvent);
+        } else {
+          throw new Error('Evento no encontrado');
+        }
+      }
 
     updateEventDescription(theme,newDescription){
-        updatedEvent= this.eventRepository.getAll(event=>event.theme==theme);
-        updatedEvent.setDescription(newDescription);
-        this.eventRepository.update(theme, updatedEvent);
+        const updatedEvent= this.eventRepository.getAll().find(event => event.theme == theme);
+        if (updatedEvent) {
+          updatedEvent.setDescription(newDescription);
+          this.eventRepository.update(theme, updatedEvent);
+        } else {
+          throw new Error('Evento no encontrado');
+    }
     }
 
     updateEventDate(theme,newDate){
-        updatedEvent= this.eventRepository.getAll(event=>event.theme==theme);
-        updatedEvent.setDate(newDate);
-        this.eventRepository.update(theme, updatedEvent);
+        const updatedEvent= this.eventRepository.getAll().find(event => event.theme == theme);
+        if (updatedEvent) {
+          updatedEvent.setDate(newDate);
+          this.eventRepository.update(theme, updatedEvent);
+          }else {
+          throw new Error('Evento no encontrado');
+    } 
     }
     
     updateEventLocation(theme,newLocation){
-        updatedEvent= this.eventRepository.getAll(event=>event.theme==theme);
-        updatedEvent.setLocation(newLocation);
-        this.eventRepository.update(theme, updatedEvent);
+        const updatedEvent= this.eventRepository.getAll().find(event => event.theme == theme);
+        if (updatedEvent) {
+          updatedEvent.setLocation(newLocation);
+          this.eventRepository.update(theme, updatedEvent);
+          }else {
+          throw new Error('Evento no encontrado');
+    } 
     }
 
     deleteEvent(theme) {
