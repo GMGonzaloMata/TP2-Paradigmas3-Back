@@ -129,6 +129,22 @@ app.delete('/sculptors', (req, res) => {
   }
 });
 
+app.delete('/sculptors/delete', (req, res) => {
+  const { name} = req.body;  // Asegúrate de que está leyendo el tema del body
+  console.log('Nombre recibido para eliminar:', name);
+
+  if (!name) {
+    return res.status(400).send('Debe proporcionar el nombre del escultor');
+  }
+
+  const deleted = sculptorController.deleteSculptor(name);
+  if (deleted) {
+    res.status(200).send('Escultor eliminado con éxito');
+  } else {
+    res.status(404).send('Escultor no encontrado');
+  }
+});
+
 app.get('/sculptors', (req, res) => {
   const allSculptors = sculptorController.getAllSculptors();
   res.status(200).json(allSculptors);
