@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const EventController = require('./EventController');
-const SculptorController = require('./SculptorController');
+const EventController = require('../InterfaceAdapters/EventController');
+const SculptorController = require('../InterfaceAdapters/SculptorController');
 const EventUseCase = require('../UseCases/EventUseCase');
 const SculptorUseCase = require('../UseCases/SculptorUseCase');
-const InMemoryEventRepository = require('../InterfaceAdapters/InMemoryEventRepository');
-const InMemorySculptorRepository = require('../InterfaceAdapters/InMemorySculptorRepository');
+const InMemoryEventRepository = require('../Frameworks&Drivers/InMemoryEventRepository');
+const InMemorySculptorRepository = require('../Frameworks&Drivers/InMemorySculptorRepository');
 
 const app = express();
 const port = process.env.PORT || 3000;
