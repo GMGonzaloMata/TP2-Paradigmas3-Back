@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node src/Frameworks&Drivers/server.js",
+    "start": "node src/FrameworksYDrivers/server.js",
     "build": "npm install"
   },
   "keywords": [
