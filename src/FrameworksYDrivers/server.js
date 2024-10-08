@@ -113,22 +113,6 @@ app.put('/sculptors', (req, res) => {
     res.status(200).send('Escultor actualizado con éxito');
 });
 
-app.delete('/sculptors', (req, res) => {
-  const { name } = req.body;  // Asegúrate de que está leyendo el tema del body
-  console.log('Tema recibido para eliminar:', name);
-  
-  if (!name) {
-    return res.status(400).send('Debe proporcionar el tema del evento');
-  }
-  
-  const deleted = sculptorController.deleteSculptor(name);
-  if (deleted) {
-    res.status(200).send('Evento eliminado con éxito');
-  } else {
-    res.status(404).send('Evento no encontrado');
-  }
-});
-
 app.delete('/sculptors/delete', (req, res) => {
   const { name} = req.body;  // Asegúrate de que está leyendo el tema del body
   console.log('Nombre recibido para eliminar:', name);
