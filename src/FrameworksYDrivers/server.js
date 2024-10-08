@@ -43,7 +43,7 @@ app.post('/events', (req, res) => {
 });
 
 app.delete('/events', (req, res) => {
-  const { theme } = req.body;  // Asegúrate de que está leyendo el tema del body
+  const { theme } = req.body; 
   console.log('Tema recibido para eliminar:', theme);
 
   if (!theme) {
@@ -113,8 +113,8 @@ app.put('/sculptors', (req, res) => {
     res.status(200).send('Escultor actualizado con éxito');
 });
 
-app.delete('/sculptors/delete', (req, res) => {
-  const { name} = req.body;  // Asegúrate de que está leyendo el tema del body
+app.delete('/sculptors', (req, res) => {
+  const { name } = req.body;  
   console.log('Nombre recibido para eliminar:', name);
 
   if (!name) {
